@@ -12,8 +12,7 @@ public without sharing class DrawingNumberController {
                         Drawing_Code1__r.Name, 
                         Drawing_Code1__r.Drawing__r.Assebly_Drawing__c,
                         Drawing_Code1__r.Drawing__r.Cut_View_Drawing__c,
-                        Drawing_Code1__r.Drawing__r.Drawing_Image__c,
-                        Demo_image__c
+                        Drawing_Code1__r.Drawing__r.Drawing_Image__c
                 FROM Drawing_Number__c 
                 WHERE Id = :drawingNumberId
                 LIMIT 1 

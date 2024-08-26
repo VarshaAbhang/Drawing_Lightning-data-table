@@ -7,14 +7,13 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
 import CustomDataTypes from 'c/customDataTypes';
 
-const actions = [
-    {label: 'View', name: 'view'},
-    { label: 'Edit', name: 'edit' },
-    { label: 'Delete', name: 'delete' }
-];
+// const actions = [
+//     {label: 'View', name: 'view'},
+//     { label: 'Edit', name: 'edit' },
+//     { label: 'Delete', name: 'delete' }
+// ];
 
-
-const Drawing_Number_columns = [
+const Assembly_Drawing_columns = [
     { 
         label: 'Assembly Drawing',
         type: 'customAssembly', 
@@ -22,7 +21,10 @@ const Drawing_Number_columns = [
             AssemblyDrawing: { fieldName: 'Drawing_Code1__r.Drawing__r.Assebly_Drawing__c' }   
         },
         cellAttributes: { alignment: 'center' }
-    },
+    }
+];
+
+const Drawing_Number_columns = [
     { 
         label: 'Cut View Drawing',
         type: 'customCutView', 
@@ -30,6 +32,7 @@ const Drawing_Number_columns = [
             CutViewDrawing: { fieldName: 'Drawing_Code1__r.Drawing__r.Cut_View_Drawing__c' }   
         },
         cellAttributes: { alignment: 'center' }
+        
     },
     { 
         label: 'Drawing Image',
@@ -38,6 +41,7 @@ const Drawing_Number_columns = [
             drawingImage: { fieldName: 'Drawing_Code1__r.Drawing__r.Drawing_Image__c' }   
         },
         cellAttributes: { alignment: 'center' }
+        
     }
 ];
 
@@ -67,10 +71,6 @@ const DIMENSIONS_COLUMNS = [
     { label: 'Drawing Name', fieldName: 'Drawing__r.Name', type: 'text' },
     { label: 'Record Type', fieldName: 'RecordType.Name', type: 'text' },
     { label: 'Remarks', fieldName: 'Remarks__c', type: 'text', editable: true },
-    {
-        type: 'action', typeAttributes : { rowActions: actions }
-        
-    }
 ];
 
 export default class DrawingNumberDataTable extends LightningElement {
@@ -82,10 +82,12 @@ export default class DrawingNumberDataTable extends LightningElement {
     @track selectedRowIds = []; 
 
     wiredDNLiResult;
+    wiredDimensionDataResult;
 
     DN_LI_columns = DN_LI_columns;
     DIMENSIONS_COLUMNS = DIMENSIONS_COLUMNS;
     Drawing_Number_columns = Drawing_Number_columns;
+    Assembly_Drawing_columns = Assembly_Drawing_columns;
 
     @wire(getDrawingNumberData, { drawingNumberId: '$recordId' })
     wiredDrawingNumberData({ error, data }) {
