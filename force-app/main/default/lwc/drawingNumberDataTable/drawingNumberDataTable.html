@@ -12,24 +12,6 @@
     </template>
     
 
-    <div class="table-gap"></div>
-
-    <!-- DN LI Table Section -->
-    <div class="table-container">
-        <h2 class="table-title">DN LI</h2>
-        <template lwc:if={dnLiRecords}>
-            <lightning-datatable 
-                key-field="Id" 
-                data={dnLiRecords}
-                columns={DN_LI_columns}
-                onsave={handleDnLiCellChange}
-                draft-values={draftValues}
-                hide-checkbox-column
-            >
-            </lightning-datatable>
-        </template>
-    </div>
-
     <!-- Gap between tables -->
     <div class="table-gap"></div>
 
@@ -47,6 +29,22 @@
 
     <div class="table-gap"></div>
 
+    <!-- DN LI Table Section -->
+    <div class="table-container">
+        <h2 class="table-title">DN LI</h2>
+        <template lwc:if={dnLiData}>
+            <lightning-datatable 
+                key-field="Id" 
+                data={dnLiData}
+                columns={DN_LI_columns}
+                hide-checkbox-column
+            ></lightning-datatable>
+        </template>
+    </div> 
+
+    <div class="table-gap"></div>
+    
+    <!-- Dimensions Table Section -->
     <div class="table-container">
         <h2 class="table-title">Dimensions</h2>
         <template lwc:if={dimensionRecords}>
@@ -56,10 +54,17 @@
                 columns={DIMENSIONS_COLUMNS}
                 onsave={handleDimensionsSave}
                 draft-values={draftValues}
+                onrowaction={rowActionHandler}
                 hide-checkbox-column
-            >
-            </lightning-datatable>
+            ></lightning-datatable>
         </template>
     </div> 
-
+    <template if:true={showModal}>
+        <c-custom-modal-for-data-table
+            is-display-mode={viewMode}
+            is-edit-mode={editMode}
+            record-id={selectedRecordId}
+            onclosemodal={closemodal}
+        ></c-custom-modal-for-data-table>
+    </template>
 </template>
