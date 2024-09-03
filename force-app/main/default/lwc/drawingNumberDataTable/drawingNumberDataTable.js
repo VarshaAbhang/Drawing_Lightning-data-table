@@ -241,5 +241,4 @@ export default class DrawingNumberDataTable extends LightningElement {
             await refreshApex(this.wiredDimensionDataResult);
         }
     }
-
 }
