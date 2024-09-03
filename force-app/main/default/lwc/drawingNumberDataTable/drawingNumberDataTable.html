@@ -1,14 +1,4 @@
 <template>
-    <!-- <template lwc:if={drawingNumberdata}>
-        <div class="table-container">
-            <lightning-datatable
-                key-field="Id"
-                data={drawingNumberdata}
-                columns={Drawing_Number_columns}
-                hide-checkbox-column
-            ></lightning-datatable>
-        </div>
-    </template> -->
     
     <template lwc:if={drawingNumberdata}>
         <div class="table-container">
@@ -22,43 +12,39 @@
     </template>
     
 
+    <!-- Gap between tables -->
+    <div class="table-gap"></div>
+
+    <template lwc:if={drawingNumberdata}>
+        <div class="table-container">
+            <c-custom-data-types
+                key-field="Id"
+                data={drawingNumberdata}
+                columns={Assembly_Drawing_columns}
+                hide-checkbox-column
+            ></c-custom-data-types>
+        </div>
+    </template>
+    
+
     <div class="table-gap"></div>
 
     <!-- DN LI Table Section -->
     <div class="table-container">
         <h2 class="table-title">DN LI</h2>
-        <template lwc:if={dnLiRecords}>
+        <template lwc:if={dnLiData}>
             <lightning-datatable 
                 key-field="Id" 
-                data={dnLiRecords}
+                data={dnLiData}
                 columns={DN_LI_columns}
-                onsave={handleDnLiCellChange}
-                draft-values={draftValues}
                 hide-checkbox-column
-            >
-            </lightning-datatable>
+            ></lightning-datatable>
         </template>
-    </div>
+    </div> 
 
-    <!-- Gap between tables -->
     <div class="table-gap"></div>
-
+    
     <!-- Dimensions Table Section -->
-    <!-- <div class="table-container">
-        <h2 class="table-title">Dimensions</h2>
-        <template lwc:if={dimensionRecords}>
-            <lightning-datatable 
-                key-field="Id" 
-                data={dimensionRecords}
-                columns={DIMENSIONS_COLUMNS}
-                onsave={handleDimensionsSave}
-                draft-values={draftValues}
-                hide-checkbox-column
-            >
-            </lightning-datatable>
-        </template>
-    </div>  -->
-
     <div class="table-container">
         <h2 class="table-title">Dimensions</h2>
         <template lwc:if={dimensionRecords}>
@@ -68,11 +54,17 @@
                 columns={DIMENSIONS_COLUMNS}
                 onsave={handleDimensionsSave}
                 draft-values={draftValues}
-                onrowaction={handleDimensionRowAction}
+                onrowaction={rowActionHandler}
                 hide-checkbox-column
-            >
-            </lightning-datatable>
+            ></lightning-datatable>
         </template>
     </div> 
-
+    <template if:true={showModal}>
+        <c-custom-modal-for-data-table
+            is-display-mode={viewMode}
+            is-edit-mode={editMode}
+            record-id={selectedRecordId}
+            onclosemodal={closemodal}
+        ></c-custom-modal-for-data-table>
+    </template>
 </template>

@@ -1,0 +1,74 @@
+<template>
+    <section 
+        role="dialog" 
+        tabindex="-1" 
+        aria-modal="true" 
+        aria-labelledby="modal-heading-01" 
+        class="slds-modal slds-fade-in-open">
+
+
+        <div class="slds-modal__container">
+            <lightning-button-icon 
+                    icon-name="utility:close"
+                    title="Cancel and close"
+                    onclick={closeModalHandler}
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                    size="medium">
+                </lightning-button-icon>
+
+        <div class="slds-modal__header">
+            <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">
+                {header}
+            </h1>
+        </div>
+
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <template lwc:if={isDisplayMode}>
+                <lightning-record-form 
+                    record-id={recordId}
+                    object-api-name="Dimensions__c"
+                    layout-type="Full"
+                    mode="readonly"
+                ></lightning-record-form>
+            </template>
+
+            <template lwc:elseif={isEditMode}>
+                <lightning-record-edit-form 
+                    record-id={recordId}
+                    object-api-name="Dimensions__c"
+                    onsuccess={handleSubmit}
+                >
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div class="modal-grid">
+                        <!-- Editable Fields (Left Column) -->
+                        <div class="editable-fields">
+                            <lightning-input-field field-name="Size__c"></lightning-input-field>
+                            <lightning-input-field field-name="Tolerance_Plus__c"></lightning-input-field>
+                            <lightning-input-field field-name="Tolerance_Minus__c"></lightning-input-field>
+                            <lightning-input-field field-name="Remarks__c"></lightning-input-field>
+                        </div>
+        
+                        <!-- Non-Editable Fields (Right Column) -->
+                        <div class="non-editable-fields">
+                            <lightning-output-field field-name="Name"></lightning-output-field>
+                            <lightning-output-field field-name="Drawing_Number__c"></lightning-output-field>
+                            <lightning-output-field field-name="Drawing__c"></lightning-output-field>
+                            <lightning-output-field field-name="RecordTypeId"></lightning-output-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal__footer">
+                    <lightning-button 
+                        type="submit"
+                        variant="brand"  
+                        label="Save"
+                    ></lightning-button>
+                </div>
+                </lightning-record-edit-form>
+            </template>
+        </div> 
+
+    </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>
