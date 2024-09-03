@@ -11,22 +11,7 @@
         </div>
     </template>
     
-
-    <!-- Gap between tables -->
-    <div class="table-gap"></div>
-
-    <template lwc:if={drawingNumberdata}>
-        <div class="table-container">
-            <c-custom-data-types
-                key-field="Id"
-                data={drawingNumberdata}
-                columns={Assembly_Drawing_columns}
-                hide-checkbox-column
-            ></c-custom-data-types>
-        </div>
-    </template>
-    
-
+     <!-- Gap between tables -->
     <div class="table-gap"></div>
 
     <!-- DN LI Table Section -->
@@ -42,6 +27,21 @@
         </template>
     </div> 
 
+    <!-- Gap between tables -->
+    <div class="table-gap"></div>
+
+    <template lwc:if={drawingNumberdata}>
+        <div class="table-container">
+            <c-custom-data-types
+                key-field="Id"
+                data={drawingNumberdata}
+                columns={Assembly_Drawing_columns}
+                hide-checkbox-column
+            ></c-custom-data-types>
+        </div>
+    </template>
+    
+     <!-- Gap between tables -->
     <div class="table-gap"></div>
     
     <!-- Dimensions Table Section -->

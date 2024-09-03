@@ -5,7 +5,6 @@ import getDimensiondata from '@salesforce/apex/DrawingNumberController.getDimens
 import { deleteRecord, updateRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
-import { NavigationMixin } from 'lightning/navigation';
 import CustomDataTypes from 'c/customDataTypes';
 
 
@@ -74,7 +73,7 @@ const DIMENSIONS_COLUMNS = [
     },
 ];
 
-export default class DrawingNumberDataTable extends NavigationMixin (LightningElement) {
+export default class DrawingNumberDataTable extends LightningElement {
     @api recordId;
     @track drawingNumberdata = [];
     Drawing_Number_columns = Drawing_Number_columns;
