@@ -1,9 +1,9 @@
 .table-container {
-    margin-bottom: 20px; /* Adjust the spacing between tables */
-    background-color: white; /* Set background color to white */
-    padding: 15px; /* Add some padding around the table */
-    border-radius: 8px; /* Optional: Add rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+    margin-bottom: 20px; 
+    background-color: white; 
+    padding: 15px; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
 }
 
 .table-title {
@@ -13,5 +13,5 @@
 }
 
 .table-gap {
-    height: 30px; /* height of gap between the tables */
+    height: 30px; 
 }
