@@ -3,7 +3,7 @@ public class DrawingNumberControllerTest {
    
     @TestSetup
     static void setupTestData() {
-        
+
         RecordType sizeRecordType = null;
         RecordType makeRecordType = null;
         RecordType drawingNumberRecordType = null;
@@ -119,8 +119,12 @@ public class DrawingNumberControllerTest {
     }
     
 	@IsTest
-    static void testGetDrawingNumberDataAdmin() {
-            Drawing_Number__c drawingNumber = [SELECT Id FROM Drawing_Number__c LIMIT 1];
+    static void testGetDrawingNumberdataAdmin() {
+
+    System.debug('Querying testGetDrawingNumberdataAdmin records');
+    Drawing_Number__c drawingNumber = [SELECT Id FROM Drawing_Number__c LIMIT 1];
+    System.debug('Queried Drawing Number ID: ' + drawingNumber.Id);
+
 
             Test.startTest();
             Drawing_Number__c result = DrawingNumberController.getDrawingNumberData(drawingNumber.Id);
@@ -146,7 +150,8 @@ public class DrawingNumberControllerTest {
             LocaleSidKey = 'en_US',
             ProfileId = standardUserProfile.Id,
             TimeZoneSidKey = 'America/Los_Angeles',
-            Username = 'standarduser@example.com'
+            Username = 'standarduser' + DateTime.now().getTime() + '@example.com'
+
         );
         insert standardUser;
        
@@ -165,7 +170,8 @@ public class DrawingNumberControllerTest {
 
    @IsTest
    static void testGetDNLIdataAdmin(){
-        Drawing_Number__c drawingNumber = [SELECT Id FROM Drawing_Number__c LIMIT 1];
+   
+    Drawing_Number__c drawingNumber = [SELECT Id FROM Drawing_Number__c LIMIT 1];
 
         Test.startTest();
         List<DN_LI__c> dnliData = DrawingNumberController.getDNLIdata(drawingNumber.Id);
@@ -192,7 +198,8 @@ public class DrawingNumberControllerTest {
             LocaleSidKey = 'en_US',
             ProfileId = standardUserProfile.Id,
             TimeZoneSidKey = 'America/Los_Angeles',
-            Username = 'standarduser@example.com'
+            Username = 'standarduser' + DateTime.now().getTime() + '@example.com'
+
         );
         insert standardUser;
        
@@ -212,7 +219,9 @@ public class DrawingNumberControllerTest {
 
    @IsTest
     static void testGetDimensiondataAdmin() {
-	    Drawing_Number__c drawingNumber = [SELECT Id FROM Drawing_Number__c LIMIT 1];
+	    System.debug('Querying testGetDimensiondataAdmin records');
+        Drawing_Number__c drawingNumber = [SELECT Id FROM Drawing_Number__c LIMIT 1];
+        System.debug('Queried Drawing Number ID: ' + drawingNumber.Id);
                
         Test.startTest();
         List<Dimensions__c> dimensionData = DrawingNumberController.getDimensiondata(drawingNumber.Id);
@@ -237,7 +246,8 @@ public class DrawingNumberControllerTest {
             LocaleSidKey = 'en_US',
             ProfileId = standardUserProfile.Id,
             TimeZoneSidKey = 'America/Los_Angeles',
-            Username = 'standarduser@example.com'
+            Username = 'standarduser' + DateTime.now().getTime() + '@example.com'
+
         );
         insert standardUser;
        
